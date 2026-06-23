@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<title>realimakers shop</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    direction: rtl;
+    background: #0b0f1a;
+    color: white;
+}
+
+/* ניווט */
+.navbar {
+    background: #121a2b;
+    padding: 15px;
+    text-align: center;
+    border-bottom: 2px solid #00e5ff;
+}
+
+.navbar a {
+    color: #00e5ff;
+    font-size: 22px;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    background: radial-gradient(circle at top, #0b2a3a, #05070f);
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #00e5ff;
+}
+
+.hero-text h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #00e5ff;
+}
+
+.robot {
+    font-size: 70px;
+    background: linear-gradient(145deg, #00e5ff, #333);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #00e5ff;
+}
+
+/* מוצרים */
+.container {
+    padding: 20px;
+}
+
+.products {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product {
+    background: #121a2b;
+    padding: 15px;
+    width: 220px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #00e5ff33;
+}
+
+button {
+    background: #00e5ff;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* עגלה */
+.cart {
+    margin-top: 30px;
+    background: #121a2b;
+    padding: 20px;
+    border-radius: 10px;
+    width: 340px;
+    border: 1px solid #00e5ff33;
+}
+
+.note {
+    color: #00e5ff;
+    font-weight: bold;
+}
+
+/* צור קשר */
+.contact-box {
+    margin-top: 80px;
+    padding: 40px;
+    background: #121a2b;
+    border-top: 2px solid #00e5ff;
+    text-align: center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ניווט -->
+<div class="navbar">
+    <a onclick="scrollToSection('top')">דף הבית</a>
+    <a onclick="scrollToSection('contact')">צור קשר</a>
+</div>
+
+<div id="top"></div>
+
+<h1 style="font-size:90px; text-align:center; margin:20px 0; color:white;">
+    realimakers shop
+</h1>
+
+<img src="realimakers-shop.png" style="width:100%; display:block;">
+
+<div class="hero">
+    <div class="hero-text">
+        <h1>עולם הרובוטיקה 🤖</h1>
+        <p>⚡ חיישנים • מנועים • בקרה • בניית רובוטים</p>
+        <p>🧠 העתיד מתחיל כאן</p>
+    </div>
+    <div class="robot">🤖</div>
+</div>
+
+<div class="container">
+
+<h2>🛒 מוצרים</h2>
+
+<div class="products">
+
+<div class="product">
+    <h3>mindstorms</h3>
+    <img src="https://m.media-amazon.com/images/I/81E5SrMrslL._AC_UF894,1000_QL80_.jpg" width="100%" style="border-radius:8px;">
+    <p>₪1000</p>
+    <button onclick="addToCart('mindstorms',1000)">הוסף לעגלה</button>
+</div>
+
+</div>
+
+<h2>🔧 ערכה להרכבה</h2>
+
+<div style="display:flex; gap:20px; align-items:flex-start;">
+
+    <div style="font-size:18px;">
+
+        בקר (₪250):  
+        <input type="number" id="controller" value="0" style="width:60px;"><br><br>
+
+        מנוע גדול (₪50):  
+        <input type="number" id="bigMotor" value="0" style="width:60px;"><br><br>
+
+        מנוע קטן (₪30):  
+        <input type="number" id="smallMotor" value="0" style="width:60px;"><br><br>
+
+        חיישן (₪20):  
+        <input type="number" id="sensor" value="0" style="width:60px;"><br><br>
+
+        סוג חיישן:  
+        <input type="text" id="sensorType" placeholder="לדוגמה: צבע / מרחק"><br><br>
+
+        <button onclick="addCustomKit()">הוסף לעגלה</button>
+
+        <p style="margin-top:20px; color:#00e5ff; font-weight:bold;">
+            על כל מנוע / בקר / חיישן – חוט 1 חינם 🎁
+        </p>
+
+    </div>
+
+    <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQE9NdBuWpJrb2q2HyTSUs1NUMK2v96t5GGbvv4skQBiKSZfwQLke4APZjOW3gDfoeLvlmCB3wRLdGQuZVjPp6E29aQ_k7K6zr340t45C5pfs-50qc7vou6ADppKaDeaZDHVwOz2l1KGA&usqp=CAc"
+         style="width:220px; border-radius:10px;">
+</div>
+
+<div class="cart">
+
+<h2>🧾 עגלה</h2>
+
+<ul id="cartList"></ul>
+
+<p id="total">סה"כ: ₪0</p>
+
+<input type="email" id="email" placeholder="האימייל שלך"><br><br>
+
+<button onclick="copyOrder()">📋 העתק הזמנה</button>
+<button onclick="checkout()">סיום קנייה</button>
+
+<p class="note">
+📧 שלח לאימייל: uri.gruria@reali.org.il  
+<br>✔ אחרי זה צלם מסך והדבק במייל
+</p>
+
+</div>
+
+</div>
+
+<!-- ⭐ צור קשר בתוך אותו דף ⭐ -->
+<div id="contact" class="contact-box">
+    <h2>📞 צור קשר</h2>
+    <p style="font-size:28px;">שלח הודעה למייל:</p>
+    <p style="font-size:40px; font-weight:bold; color:#00e5ff;">
+        uri.gruria@reali.org.il
+    </p>
+</div>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior: "smooth"});
+}
+
+let cart = [];
+let total = 0;
+
+function addToCart(name, price) {
+    cart.push({name, price});
+    total += price;
+    renderCart();
+}
+
+function addCustomKit() {
+    let controller = +document.getElementById("controller").value;
+    let bigMotor = +document.getElementById("bigMotor").value;
+    let smallMotor = +document.getElementById("smallMotor").value;
+    let sensor = +document.getElementById("sensor").value;
+    let sensorType = document.getElementById("sensorType").value;
+
+    let price =
+        controller * 250 +
+        bigMotor * 50 +
+        smallMotor * 30 +
+        sensor * 20;
+
+    let wires = controller + bigMotor + smallMotor + sensor;
+
+    cart.push({
+        name: "ערכה מותאמת",
+        price,
+        details: {
+            controller,
+            bigMotor,
+            smallMotor,
+            sensor,
+            sensorType,
+            wires
+        }
+    });
+
+    total += price;
+    renderCart();
+}
+
+function renderCart() {
+    let list = document.getElementById("cartList");
+    list.innerHTML = "";
+
+    cart.forEach(item => {
+        let li = document.createElement("li");
+
+        if (item.details) {
+            li.innerHTML =
+                `<strong>${item.name}</strong><br>
+                בקר: ${item.details.controller}<br>
+                מנוע גדול: ${item.details.bigMotor}<br>
+                מנוע קטן: ${item.details.smallMotor}<br>
+                חיישנים: ${item.details.sensor}<br>
+                סוג חיישן: ${item.details.sensorType}<br>
+                חוטים חינם: ${item.details.wires}<br>
+                מחיר: ₪${item.price}`;
+        } else {
+            li.innerText = `${item.name} - ₪${item.price}`;
+        }
+
+        list.appendChild(li);
+    });
+
+    document.getElementById("total").innerText = "סה\"כ: ₪" + total;
+}
+
+function buildOrderText() {
+    let text = "הזמנה:\n\n";
+
+    cart.forEach(item => {
+        if (item.details) {
+            text +=
+                `ערכה מותאמת:\n` +
+                `בקרים: ${item.details.controller}\n` +
+                `מנועים גדולים: ${item.details.bigMotor}\n` +
+                `מנועים קטנים: ${item.details.smallMotor}\n` +
+                `חיישנים: ${item.details.sensor}\n` +
+                `סוג חיישן: ${item.details.sensorType}\n` +
+                `חוטים חינם: ${item.details.wires}\n` +
+                `מחיר: ₪${item.price}\n\n`;
+        } else {
+            text += `${item.name} - ₪${item.price}\n`;
+        }
+    });
+
+    text += "\nסה\"כ: ₪" + total;
+    return text;
+}
+
+function copyOrder() {
+    navigator.clipboard.writeText(buildOrderText());
+    alert("ההזמנה הועתקה!");
+}
+
+function checkout() {
+    let userEmail = document.getElementById("email").value;
+
+    if (!userEmail) {
+        alert("תכניס אימייל");
+        return;
+    }
+
+    let subject = encodeURIComponent("הזמנה מהאתר");
+
+    let body = encodeURIComponent(
+        buildOrderText() +
+        "\n\n📧 שלח לאימייל: uri.gruria@reali.org.il\n✔ ואז צלם מסך והדבק"
+    );
+
+    window.location.href =
+        "mailto:uri.gruria@reali.org.il?subject=" + subject + "&body=" + body;
+}
+</script>
+
+</body>
+</html>
